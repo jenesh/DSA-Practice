@@ -19,10 +19,10 @@ function bubbleSort(array) {
             }
         }
     }
-    console.log(`${Date.now() - start}ms`);
+    console.log(`Bubble Sort => ${array.length} items in ${Date.now() - start}ms`);
     return array;
 }
 
-const array = arrayGenerator(-1000000, 1000000, 10000);
+const array = arrayGenerator(-1000000, 1000000, 100000);
 
 bubbleSort(array);
