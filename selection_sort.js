@@ -4,6 +4,7 @@
 // Best Case: O(n^2) Worst Case: O(n^2)
 
 function selectionSort(array) {
+    const start = Date.now();
     for (let i = 0; i < array.length; i++) {
         let firstUnsorted = array[i];
         let currentMin = array[i];
@@ -19,9 +20,27 @@ function selectionSort(array) {
             array[currentMinIndex] = firstUnsorted;
         }
     }
+    console.log(`${Date.now() - start}ms`);
     return array;
 }
 
-const array = [4,1,6,4,8,9,23,565,223,774,111,1234];
+const array = arrayGenerator(-1000000, 1000000, 10000);
 
-console.log(selectionSort(array))
+selectionSort(array) // Array size too large to console log so only call the function to see runtime, sort 100% working check with smaller sized array
+
+
+function arrayGenerator(min, max, arrSize) {
+    let arr = [];
+    for (let i = 0; i < arrSize / 2; i++) {
+        const positiveNumber = randomNumber(max);
+        const negativeNumber = randomNumber(min);
+
+        arr.push(positiveNumber);
+        arr.push(negativeNumber);
+    }
+    return arr;
+}
+
+function randomNumber(num) {
+    return Math.floor(Math.random() * num);
+}
