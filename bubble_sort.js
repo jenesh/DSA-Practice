@@ -1,3 +1,5 @@
+const arrayGenerator = require('./module/array_generator.js');
+
 // Bubble Sort
 // Move/Bubble larger numbers to the right by comparing adjacent pairs and swapping them
 // Have a swap counter to keep track of swaps and stop when counter = 0
@@ -24,19 +26,3 @@ function bubbleSort(array) {
 const array = arrayGenerator(-1000000, 1000000, 10000);
 
 bubbleSort(array);
-
-function arrayGenerator(min, max, arrSize) {
-    let arr = [];
-    for (let i = 0; i < arrSize / 2; i++) {
-        const positiveNumber = randomNumber(max);
-        const negativeNumber = randomNumber(min);
-
-        arr.push(positiveNumber);
-        arr.push(negativeNumber);
-    }
-    return arr;
-}
-
-function randomNumber(num) {
-    return Math.floor(Math.random() * num);
-}
