@@ -6,9 +6,10 @@ const arrayGenerator = require('./module/array_generator.js');
 // to its appropriate sorted located on the left of current value(sorted array)
 
 function insertionSort(array) {
+    array.unshift(-Infinity);
     const start = Date.now();
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 1; i < array.length; i++) {
         let min = false;
         // console.log('Pointer', i);
         for (let j = i; j < array.length; j++) {
@@ -18,9 +19,9 @@ function insertionSort(array) {
                 min = array.splice(j, 1);
                 // console.log('Min: ', min);
 
-                for (let k = 0; k <= i; k++) {
+                for (let k = i; k > 0; k--) {
                     // console.log('k', k, '=>', array[k])
-                    if (array[k] >= min[0]) {
+                    if (array[k - 1] <= min[0]) {
                         // console.log(`Inserting ${min[0]} before ${array[k]}...`);
                         array.splice(k, 0, min[0]);
                         break;
@@ -31,13 +32,14 @@ function insertionSort(array) {
         }
         // console.log('Array: ', array);
     }
+    array.shift();
     console.log(`Insertion Sort => ${array.length} items in ${Date.now() - start}ms`);
-    console.log('Ending Array: ', array);
+    // console.log('Ending Array: ', array);
     return array;
 }
 
-// const array = arrayGenerator(-1000000, 1000000, 100000);
-const array = [0,-5,-2,1,2,3,4,5,6,8,0];
-// console.log('Starting Array:', array)
+const array = arrayGenerator(-1000000, 1000000, 100000);
+// const array = [0,-5,-2,1,2,3,4,5,6,8,0];
+// console.log('Starting Array:', array);
 
 insertionSort(array);
