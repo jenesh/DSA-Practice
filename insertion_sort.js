@@ -26,8 +26,8 @@ function insertionSort(array) {
                         array.splice(k, 0, min[0]);
                         break;
                     }
-                }          
-                break;     
+                }
+                break;
             }
         }
         // console.log('Array: ', array);
@@ -38,32 +38,32 @@ function insertionSort(array) {
     return array;
 }
 
-const array = arrayGenerator(-1000000, 1000000, 100000);
+const array = arrayGenerator(2, 20, 5);
 // const array = [0,-5,-2,1,2,3,4,5,6,8,0];
 // console.log('Starting Array:', array);
 
-insertionSort(array);
-=======
-// Insert Sort
+// insertionSort(array);
 
-const start = Date.now();
 
-console.log(`${Date.now() - start}ms`);
+function insertionSortv2(arr) {
+    for (let unSorted = 1; unSorted < arr.length; unSorted++) {
+        for (let sorted = unSorted - 1; sorted >= 0; sorted--) {
+            console.log('Unsorted => ', arr[unSorted], ' index => ', unSorted)
+            console.log('Sorted => ', arr[sorted], ' index => ', sorted)
+            const pivot = arr[unSorted];
+            if (pivot >= arr[unSorted]) {
+                console.log('switch ', arr[sorted], ' with ', pivot)
+                // let temp = arr[unSorted];
+                arr[unSorted] = arr[sorted];
+                // arr[sorted] = pivot;
+            }
+            console.log(' - - - - - - - - - - ')
+        }
 
-const array = arrayGenerator(-1000000, 1000000, 10000);
-
-function arrayGenerator(min, max, arrSize) {
-    let arr = [];
-    for (let i = 0; i < arrSize / 2; i++) {
-        const positiveNumber = randomNumber(max);
-        const negativeNumber = randomNumber(min);
-
-        arr.push(positiveNumber);
-        arr.push(negativeNumber);
     }
+
+
     return arr;
 }
-
-function randomNumber(num) {
-    return Math.floor(Math.random() * num);
-}
+console.log('Start: ', array)
+console.log('End: ', insertionSortv2(array))
