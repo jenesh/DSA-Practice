@@ -1,4 +1,4 @@
-const arrayGenerator = require('./module/array_generator.js');
+const arrayGenerator = require('../module/array_generator.js');
 
 // Bubble Sort
 // Move/Bubble larger numbers to the right by comparing adjacent pairs and swapping them
