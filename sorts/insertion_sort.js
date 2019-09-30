@@ -1,4 +1,4 @@
-const arrayGenerator = require('./module/array_generator.js');
+const arrayGenerator = require('../module/array_generator.js');
 
 // Insertion Sort
 // Starting from the left build a sorted array in place moving right everytime

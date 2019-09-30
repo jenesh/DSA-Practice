@@ -1,4 +1,4 @@
-const arrayGenerator = require('./module/array_generator.js');
+const arrayGenerator = require('../module/array_generator.js');
 // Linear Search
 // Sorts from the left(min) to the right(max)
 // Best Case: O(1) Worst Case: O(n)

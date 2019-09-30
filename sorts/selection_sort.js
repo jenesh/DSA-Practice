@@ -1,4 +1,4 @@
-const arrayGenerator = require('./module/array_generator.js');
+const arrayGenerator = require('../module/array_generator.js');
 
 // Selection Sort
 // Sort the array from left to right by finding the smallest number
