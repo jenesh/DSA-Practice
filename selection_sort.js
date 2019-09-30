@@ -22,11 +22,11 @@ function selectionSort(array) {
             array[currentMinIndex] = firstUnsorted;
         }
     }
-    console.log(`${Date.now() - start}ms`);
+    console.log(`Selection Sort => ${array.length} items in ${Date.now() - start}ms`);
     return array;
 }
 
-const array = arrayGenerator(-1000000, 1000000, 10000);
+const array = arrayGenerator(-1000000, 1000000, 100000);
 
 selectionSort(array) 
 // Array size too large to console log so only call the 

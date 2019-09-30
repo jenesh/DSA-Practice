@@ -12,10 +12,10 @@ function linearSearch(array, value) {
         }
     }
     // console.log(array)
-    console.log(`${Date.now() - start}ms`);
+    console.log(`Linear Search => ${array.length} items in ${Date.now() - start}ms`);
     return false;
 }
 
-const array = arrayGenerator(-1000000, 1000000, 10000);
+const array = arrayGenerator(-1000000, 1000000, 100000);
 
-console.log(linearSearch(array, 2342));
+linearSearch(array, 2342);
