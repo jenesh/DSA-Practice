@@ -34,7 +34,7 @@ class LinkedList {
     // print() : Prints all the elements in the list sequentially.
     print() {
         if (this.length === 0) {
-            console.log('This linked list is empty.');
+            return 'This linked list is empty.';
         }
         let currentNode = this.head;
         let str = currentNode.value;
@@ -42,11 +42,11 @@ class LinkedList {
             currentNode = currentNode.next;
             str += ` => ${currentNode.value}`
         }
-        console.log(str);
+        return str;
     }
     // nodeAt(index) : Returns value at the passed index.
     nodeAt(index) {
-        if (index > 0 && index < this.length) {
+        if (index >= 0 && index < this.length) {
             let curr = this.head;
             for (let i = 0; i < index; i++) {
                 curr = curr.next;
@@ -58,16 +58,18 @@ class LinkedList {
     }
     // pop() : Removes the last element in the list and returns it.
     pop() {
+        let curr = this.head;
+        let returnValue = curr.value;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        }
         if (this.length > 0) {
-            let curr = this.head;
-            console.log(curr)
             while (curr.next) {
-                if (curr.next.next) {
-                    const returnValue = curr.next;
+                if (curr.next.next === null) {
+                    returnValue = curr.next.value;
                     curr.next = null;
                     this.tail = curr;
-                    console.log('return: ', returnValue)
-                    return ;
                 } else {
                     curr = curr.next;
                 }
@@ -75,6 +77,8 @@ class LinkedList {
         } else {
             return 'Nothing to pop.'
         }
+        this.length--;
+        return returnValue;
     }
 }
 
@@ -89,10 +93,14 @@ const linkedList = new LinkedList();
 linkedList.push(3)
 linkedList.push(4)
 linkedList.push(1)
-linkedList.push(1)
-linkedList.push(1)
 linkedList.append(5)
-console.log(linkedList.nodeAt(-1))
+console.log(linkedList.nodeAt(0))
+console.log(linkedList.nodeAt(1))
 console.log(linkedList.nodeAt(2))
-console.log('popped: ', linkedList.pop())
+console.log(linkedList.nodeAt(3))
+console.log('Popped: ', linkedList.pop())
+console.log('Popped: ', linkedList.pop())
+console.log('Popped: ', linkedList.pop())
+// console.log('Popped: ', linkedList.pop())
 console.log(linkedList.print())
+console.log(linkedList)
