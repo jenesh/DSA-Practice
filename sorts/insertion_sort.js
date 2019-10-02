@@ -46,23 +46,20 @@ const array = arrayGenerator(2, 20, 5);
 
 
 function insertionSortv2(arr) {
-    for (let unSorted = 1; unSorted < arr.length; unSorted++) {
-        for (let sorted = unSorted - 1; sorted >= 0; sorted--) {
-            console.log('Unsorted => ', arr[unSorted], ' index => ', unSorted)
-            console.log('Sorted => ', arr[sorted], ' index => ', sorted)
-            const pivot = arr[unSorted];
-            if (pivot >= arr[unSorted]) {
-                console.log('switch ', arr[sorted], ' with ', pivot)
-                // let temp = arr[unSorted];
-                arr[unSorted] = arr[sorted];
-                // arr[sorted] = pivot;
+    for (let right = 1; right < arr.length; right++) {
+        for (let left = right - 1; left >= 0; left--) {
+            console.log('Unsorted => ', arr[right], ' index => ', right)
+            console.log('Sorted => ', arr[left], ' index => ', left)
+            const pivot = arr[right];
+            if (pivot >= arr[right]) {
+                console.log('switch ', arr[left], ' with ', pivot)
+                // let temp = arr[right];
+                arr[right] = arr[left];
+                // arr[left] = pivot;
             }
             console.log(' - - - - - - - - - - ')
         }
-
     }
-
-
     return arr;
 }
 console.log('Start: ', array)
