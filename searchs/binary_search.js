@@ -6,29 +6,36 @@ const arrayGenerator = require('../module/array_generator.js');
 // Best Case: O(1) Worst Case: O(nlog(n))
 
 function binarySearch(array, value) {
+    const start = Date.now();
     if (array.length === 0) {
+        console.log(`Binary Search => ${array.length} items in ${Date.now() - start}ms`);
         return `${value} is not in the array.`;
     }
     let middleIndex = Math.floor(array.length / 2);
     let middleValue = array[middleIndex];
-    console.log('Middle Value: ', middleValue);
+    // console.log('Middle Value: ', middleValue);
     if (value === middleValue) {
         return `${value} is in the array.`;
     } else {
         if (value < array[middleIndex]) {
             let leftArray = array.splice(0, middleIndex);
-            console.log('Left Array: ', leftArray)
+            // console.log('Left Array: ', leftArray);
+            console.log(`Binary Search => ${array.length} items in ${Date.now() - start}ms`);
+
             return binarySearch(leftArray, value);
         } else {
             let rightArray = array.splice(middleIndex + 1, array.length - 1);
-            console.log('Right Array: ', rightArray);
+            // console.log('Right Array: ', rightArray);
+            console.log(`Binary Search => ${array.length} items in ${Date.now() - start}ms`);
             return binarySearch(rightArray, value);
         }
     }
 }
 
 function binarySearchv2(array, value) {
+    const start = Date.now();
     if (array.length === 0) {
+        console.log(`Binary Search => ${array.length} items in ${Date.now() - start}ms`);
         return `${value} is not in the array.`;
     }
 
@@ -37,10 +44,10 @@ function binarySearchv2(array, value) {
 
     while (left <= right) {
         let middle = Math.floor(left + (right - left) / 2); // left + (right - left) / 2;
-        console.log('Middle Index: ', middle);
-        
+        // console.log('Middle Index: ', middle);
 
         if (array[middle] === value) {
+            console.log(`Binary Search => ${array.length} items in ${Date.now() - start}ms`);
             return `${value} is in index ${middle}`;
         }
 
@@ -54,6 +61,7 @@ function binarySearchv2(array, value) {
         console.log('Left: ', array[left]);
         console.log('Right: ', array[right]);
     }
+    console.log(`Binary Search => ${array.length} items in ${Date.now() - start}ms`);
     return `${value} is not in the array.`;
 }
 
