@@ -27,9 +27,41 @@ function binarySearch(array, value) {
     }
 }
 
+function binarySearchv2(array, value) {
+    if (array.length === 0) {
+        return `${value} is not in the array.`;
+    }
+
+    let left = 0;
+    let right = array.length - 1;
+
+    while (left <= right) {
+        let middle = Math.floor(left + (right - left) / 2); // left + (right - left) / 2;
+        console.log('Middle Index: ', middle);
+        
+
+        if (array[middle] === value) {
+            return `${value} is in index ${middle}`;
+        }
+
+        if (array[middle] < value) {
+            left = middle + 1;
+        } else {
+            right = middle - 1;
+        }
+
+        console.log('Middle: ', array[middle]);
+        console.log('Left: ', array[left]);
+        console.log('Right: ', array[right]);
+    }
+    return `${value} is not in the array.`;
+}
+
 // const array = arrayGenerator(2, 7, 10);
-const array = [0, 1 , 2, 3, 4, 5, 6, 7, 8, 9, 10,];
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 console.log(array);
 
-console.log(binarySearch(array, 10));
+// console.log('v1: ', binarySearch(array, 10));
+
+console.log('v2: ', binarySearchv2(array, 11));
