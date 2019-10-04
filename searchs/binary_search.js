@@ -5,6 +5,8 @@ const arrayGenerator = require('../module/array_generator.js');
 // and repeat this on the subarray.
 // Best Case: O(1) Worst Case: O(nlog(n))
 
+
+// Passing in a subarray every turn so not that efficient and harder to keep track of index number
 function binarySearch(array, value) {
     const start = Date.now();
     if (array.length === 0) {
@@ -32,6 +34,7 @@ function binarySearch(array, value) {
     }
 }
 
+// Iterating using a while loop and using pointers to keep track of index number
 function binarySearchv2(array, value) {
     const start = Date.now();
     if (array.length === 0) {
