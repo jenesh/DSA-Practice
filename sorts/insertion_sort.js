@@ -47,15 +47,17 @@ const array = arrayGenerator(2, 20, 5);
 
 function insertionSortv2(arr) {
     for (let right = 1; right < arr.length; right++) {
-        for (let left = right - 1; left >= 0; left--) {
+        for (let left = right - 1; left > 0; left--) {
             console.log('Unsorted => ', arr[right], ' index => ', right)
             console.log('Sorted => ', arr[left], ' index => ', left)
             const pivot = arr[right];
-            if (pivot >= arr[right]) {
+            if (pivot <= arr[left]) {
                 console.log('switch ', arr[left], ' with ', pivot)
-                // let temp = arr[right];
+                let temp = arr[right];
                 arr[right] = arr[left];
-                // arr[left] = pivot;
+                arr[left] = pivot;
+            } else {
+                break;
             }
             console.log(' - - - - - - - - - - ')
         }
