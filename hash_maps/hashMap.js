@@ -12,29 +12,35 @@ const utf8 = require('utf8');
 // the data currently needs
 
 class hashMap {
-    constructor(size = 1, buffer = .7) {
+    constructor(size = 1, buffer = .75) {
         const safeSize = Math.ceil(size / buffer); // Computes array size to be 25% more than intended key size
         this.map = new Array(safeSize);
         this.buffer = buffer;
         this.numOfKeys = 0;
         this.length = this.map.length;
+        this.load = this.numOfKeys / this.length;
     }
     // Get => Returns the value of the provided key if it exists, if not says 'Key doesn't exist'
-    get (key) {
+    get(key) {
 
     }
     // Insert => 
-    insert (key, value) {
+    insert(key, value) {
         if (((this.numOfKeys + 1) / this.length) > this.buffer) {
-            const newSize = Math.ceil((this.length) / this.buffer);
-            const newArray = new Array(newSize);
-            this.map = newArray;
-            console.log(newArray)
-            console.log('Resize');
-            console.log('New Size: ', newSize)
+            this.grow(this.hashMap, this.buffer);
+            // const newSize = Math.ceil((this.length) / this.buffer);
+            // const newArray = new Array(newSize);
+            // this.map = newArray;
+            // this.length = this.map.length;
+            // console.log(newArray)
+            // console.log('Resize');
+            // console.log('New Size: ', newSize)
         }
+        // if (((this.numOfKeys + 1) / this.length) < (1 - this.buffer)) {
+        //     this.shrink(this.hashMap, this.buffer);
+        // }
 
-        console.log('Load: ', ((this.numOfKeys + 1) / this.length))
+        // console.log('Load: ', ((this.numOfKeys + 1) / this.length))
 
         const currentMapSize = this.map.length;
         const shaKey = sha256(utf8.encode(key));
@@ -49,10 +55,31 @@ class hashMap {
 
         this.map[index] = value;
         this.numOfKeys++;
-        
+        this.load = this.numOfKeys / this.length;
+
         return `Key: ${key} | Index: ${index}  | Size of Array: ${this.map.length}\n`;
     }
     // Delete =>
+
+    // Resize => Give the array and buffer, rehashes the elements and returns a bigger array
+    grow(arr, buffer) {
+        // if (((this.numOfKeys + 1) / arr.length) > this.buffer) {
+        // const newSize = Math.ceil((this.length) / this.buffer);
+        const newSize = (this.length + 1) * 2;
+        const newArray = new Array(newSize);
+        this.map = newArray;
+        this.length = this.map.length;
+        // console.log(newArray)
+        // console.log('Resize');
+        // console.log('New Size: ', newSize)
+        // }
+    }
+    shrink(arr, buffer) {
+        const newSize = this.numOfKeys * 2;
+        const newArray = new Array(newSize);
+        this.map = newArray;
+        this.length = this.map.length;8
+    }
 }
 
 class Node {
@@ -71,8 +98,13 @@ map1.insert('User3', 'Tom Berry')
 map1.insert('User4', 'Tom Berry')
 map1.insert('User5', 'Tom Berry')
 map1.insert('User6', 'Tom Berry')
+map1.insert('User7', 'Tom Berry')
+map1.insert('User8', 'Tom Berry')
+map1.insert('User9', 'Tom Berry')
+map1.insert('User10', 'Tom Berry')
+map1.insert('User11', 'Tom Berry')
 console.log(map1)
-console.log('Map Size: ', map1.length)
+// console.log('Map Size: ', map1.length)
 // console.log(map1.insert('User3', 'Tom Berry'))
 // console.log(map1.insert('User4', 'Tom Berry'))
 // console.log(map1.insert('User5', 'Tom Berry'))
@@ -81,6 +113,3 @@ console.log('Map Size: ', map1.length)
 // console.log(map1.insert('User8', 'Tom Berry'))
 // console.log(map1.insert('User9', 'Tom Berry'))
 // console.log(map1.insert('User10', 'Tom Berry'))
-
-
-
