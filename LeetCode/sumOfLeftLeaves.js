@@ -39,8 +39,16 @@ const sumOfLeftLeaves = (root) => {
         // return root.val;
         return 0;
     }
-    if (root.left) {
+    if (root.left && root.right) {
         return root.left.val + sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
+    }
+
+    if (root.left && !root.right) {
+        return root.left.val + sumOfLeftLeaves(root.left);
+    }
+
+    if (!root.left && root.right) {
+        return sumOfLeftLeaves(root.right);
     }
     return sum;
 }
